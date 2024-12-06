@@ -9,11 +9,9 @@ describe("Bateria de test de cadenas", () => {
 
     test("Encuentra la cantidad de veces que una subcadena se encuentra en una cadena", () => {
 
-        expect(contarCoincidenciasEnCadena('123dgdgdgdg','dg')).toBe(true);
+        expect(contarCoincidenciasEnCadena('123dgdgdgdg','dg')).toBe(4);
 
-        //expect(esPrimo(4)).toBe(false);
-
-        //expect(esPrimo(1)).toBe(false);
+        expect(contarCoincidenciasEnCadena('123dgdgdgdg','NoEsta')).toBe(0);
 
     });
     
