@@ -1,14 +1,19 @@
 pipeline {
     agent any
     stages{
-        stage("primera etapa"){
+        stage("1.a. Instalar dependencias"){
             steps{
-                echo "saludos desde mi primer pipeline"
+                sh 'npm install'
             }
         }
-        stage("segunda etapa"){
+        stage("1.c build - buid del proyecto"){
             steps{
-                echo "saludos desde mi segunda etapa del pipeline"
+                sh 'npm run build'
+            }
+        }
+        stage("1.b test - ejecuta test del proyecto"){
+            steps{
+                sh 'npm run test'
             }
         }   
     }
