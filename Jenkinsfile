@@ -1,5 +1,10 @@
 pipeline {
     agent any
+
+    enviroment {
+        USERNAME = "spensiones"
+    }
+
     stages{
         stage("instalacion de dependencias"){
             agent {
@@ -15,16 +20,17 @@ pipeline {
                         sh 'npm install'
                     }
                 }
-                stage("1.c build - buid del proyecto"){
-                    steps{
-                        sh 'npm run build'
-                    }
-                }
                 stage("1.b test - ejecuta test del proyecto"){
                     steps{
                          sh 'npm run test'
                     }
                 }
+                stage("1.c build - buid del proyecto"){
+                    steps{
+                        sh 'npm run build'
+                    }
+                }
+               
             }
         }
           
