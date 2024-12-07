@@ -35,6 +35,47 @@ pipeline {
         }
 
         stage("delivery - subida de a nexus"){
+            stages{
+                stage("1.g. actualiza con tag latest"){
+                    steps{
+                        sh 'npm install'
+                    }
+                }
+
+                stage("1.g. actualiza con tag latest"){
+                    steps{
+                        script {
+                            docker.withRegistry("http://localhost:8082", "registry"){
+                                sh 'docker build -t backend-test .'
+                                sh 'docker tag backend-test:latest localhost:8082/backend-test:latest'
+                                sh 'docker push localhost:8082/backend-test:latest'
+                            }
+                        }
+                    }
+                }
+
+                stage("1.h. actualiza con tag igual al build numbre de jenking (BUILD_NUMBER)"){
+                    steps{
+                        script {
+                            docker.withRegistry("http://localhost:8082", "registry"){
+                                sh 'docker build -t backend-${env.BUILD_NUMBER} .'
+                                sh 'docker tag backend-test:latest localhost:8082/backend-test:${env.BUILD_NUMBER}'
+                                sh 'docker push localhost:8082/backend-test:${env.BUILD_NUMBER}'
+                            }
+                        }
+                    }
+                }
+
+               
+            }
+        }
+
+
+
+
+
+
+        stage("delivery - subida de a nexus"){
            steps{
                 script {
                     docker.withRegistry("http://localhost:8082", "registry"){
