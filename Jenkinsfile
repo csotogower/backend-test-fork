@@ -33,6 +33,28 @@ pipeline {
                
             }
         }
+
+        stage("Quality assurance"){
+            agent {
+                docker {
+                    label 'contenedores'
+                    image 'sonarsource/sonar-scanner-cli'
+                    args '--network=devops-infra_default'
+                    reuseNode true
+                }
+            }
+            stages{
+                stage("Quality assurance - sonarqube"){
+                    steps{
+                        withSonarQubeEnv('sonarqube') {
+                            sh 'sonar-scanner'
+                        }
+                    }
+                }
+            }
+
+            
+        }
           
     }
 }
