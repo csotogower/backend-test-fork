@@ -36,12 +36,7 @@ pipeline {
 
         stage("delivery - subida de a nexus"){
             stages{
-                stage("1.g. actualiza con tag latest"){
-                    steps{
-                        sh 'npm install'
-                    }
-                }
-
+                
                 stage("1.g. actualiza con tag latest"){
                     steps{
                         script {
