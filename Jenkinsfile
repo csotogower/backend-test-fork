@@ -45,8 +45,8 @@ pipeline {
                                 sh 'docker tag backend-test:latest localhost:8082/backend-test:latest'
                                 sh 'docker push localhost:8082/backend-test:latest'
 
-                                sh 'docker tag backend-test:latest localhost:8082/backend-test:${env.BUILD_NUMBER}'
-                                sh 'docker push localhost:8082/backend-test:${env.BUILD_NUMBER}'
+                                sh "docker tag backend-test:latest localhost:8082/backend-test:${env.BUILD_NUMBER}"
+                                sh "docker push localhost:8082/backend-test:${env.BUILD_NUMBER}"
                             }
                         }
                     }
